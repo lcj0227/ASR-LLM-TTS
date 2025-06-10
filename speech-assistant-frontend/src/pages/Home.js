@@ -17,6 +17,7 @@ import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import ChatIcon from '@mui/icons-material/Chat';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VideocamIcon from '@mui/icons-material/Videocam';
+import PersonIcon from '@mui/icons-material/Person';
 
 // 功能列表
 const features = [
@@ -43,10 +44,10 @@ const features = [
   },
   {
     id: 4,
-    title: '更多功能',
-    description: '我们正在开发更多语音交互功能，敬请期待',
-    icon: <ChatIcon fontSize="large" color="primary" />,
-    link: '/'
+    title: '小千语音助手',
+    description: '集成唤醒词和声纹识别的智能语音助手，提供个性化安全交互',
+    icon: <PersonIcon fontSize="large" color="primary" />,
+    link: '/voice-assistant'
   },
   {
     title: '场景语音对话',

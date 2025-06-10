@@ -56,7 +56,7 @@ last_vad_end_time = 0  # 上次保存的 VAD 有效段结束时间
 
 # --- 唤醒词、声纹变量配置 ---
 # set_KWS = "ni hao xiao qian"
-set_KWS = "shuo hua xiao qian"
+set_KWS = "le di le di"
 flag_KWS = 0
 flag_KWS_used = 1
 

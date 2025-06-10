@@ -100,39 +100,43 @@ def audio_recorder():
                     channels=AUDIO_CHANNELS,
                     rate=AUDIO_RATE,
                     input=True,
-                    frames_per_buffer=CHUNK)
+                    frames_per_buffer=CHUNK*2)  # 增加帧缓冲区大小
     
     audio_buffer = []
     print("音频录制已开始")
     
     while recording_active:
-        data = stream.read(CHUNK)
-        audio_buffer.append(data)
-        
-        # 每 0.5 秒检测一次 VAD
-        if len(audio_buffer) * CHUNK / AUDIO_RATE >= 0.5:
-            # 拼接音频数据并检测 VAD
-            raw_audio = b''.join(audio_buffer)
-            vad_result = check_vad_activity(raw_audio)
+        try:
+            data = stream.read(CHUNK, exception_on_overflow=False)  # 添加参数防止溢出异常
+            audio_buffer.append(data)
             
-            if vad_result:
-                print("检测到语音活动")
-                last_active_time = time.time()
-                segments_to_save.append((raw_audio, time.time()))
-            else:
-                print("静音中...")
+            # 每 0.5 秒检测一次 VAD
+            if len(audio_buffer) * CHUNK / AUDIO_RATE >= 0.5:
+                # 拼接音频数据并检测 VAD
+                raw_audio = b''.join(audio_buffer)
+                vad_result = check_vad_activity(raw_audio)
+                
+                if vad_result:
+                    print("检测到语音活动")
+                    last_active_time = time.time()
+                    segments_to_save.append((raw_audio, time.time()))
+                else:
+                    print("静音中...")
+                
+                audio_buffer = []  # 清空缓冲区
             
-            audio_buffer = []  # 清空缓冲区
-        
-        # 检查无效语音时间
-        if time.time() - last_active_time > NO_SPEECH_THRESHOLD:
-            # 检查是否需要保存
-            if segments_to_save and segments_to_save[-1][1] > last_vad_end_time:
-                save_audio_video()
-                last_active_time = time.time()
-            else:
-                pass
-                # print("无新增语音段，跳过保存")
+            # 检查无效语音时间
+            if time.time() - last_active_time > NO_SPEECH_THRESHOLD:
+                # 检查是否需要保存
+                if segments_to_save and segments_to_save[-1][1] > last_vad_end_time:
+                    save_audio_video()
+                    last_active_time = time.time()
+                else:
+                    pass
+                    # print("无新增语音段，跳过保存")
+        except IOError as e:
+            print(f"音频读取错误: {e}，继续录制...")
+            time.sleep(0.1)  # 短暂暂停以减轻系统负担
     
     stream.stop_stream()
     stream.close()

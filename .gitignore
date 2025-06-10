@@ -51,3 +51,14 @@ pretrained_models/*
 *_pb2.py
 /speech-assistant-frontend/node_modules/
 /speech-assistant-frontend/dist/
+
+# 忽略所有音频文件
+*.wav
+*.m4a
+*.aac
+*.mp3
+*.mp4
+
+# 忽略大文件
+Wav2Lip/checkpoints/wav2lip_gan.pth
+wav2lip_model/wav2lip_gan.pth

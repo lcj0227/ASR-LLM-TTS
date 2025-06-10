@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小千语音助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>小千语音助手</h1>
+            <div class="status-bar">
+                <div class="status-item">
+                    <span>语音助手状态：</span>
+                    <span id="assistant-status" class="status-badge status-active">就绪</span>
+                </div>
+                <div class="status-item">
+                    <span>语音录制：</span>
+                    <span id="recording-status" class="status-badge status-inactive">未启动</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="assistant-container">
+                <div class="visual-container">
+                    <div class="avatar-container">
+                        <img src="avatar.png" alt="小千助手" class="assistant-avatar">
+                        <div class="voice-indicator" id="voice-indicator"></div>
+                    </div>
+                    <div class="sound-wave" id="sound-wave">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+
+                <div class="conversation-container">
+                    <div id="conversation-history" class="conversation-history">
+                        <div class="message system">
+                            <div class="message-content">你好，我是小千，一个活泼开朗的18岁女大学生。有什么我能帮你的吗？</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <div class="settings-panel">
+                    <h3>系统设置</h3>
+                    <div class="setting-group">
+                        <div class="setting-item">
+                            <label for="kws-switch">唤醒词识别：</label>
+                            <label class="switch">
+                                <input type="checkbox" id="kws-switch" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item" id="kws-container">
+                            <label for="kws-text">唤醒词：</label>
+                            <input type="text" id="kws-text" value="站起来" disabled>
+                            <button id="update-kws-btn" class="small-btn">更新</button>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <div class="setting-item">
+                            <label for="sv-switch">声纹识别：</label>
+                            <label class="switch">
+                                <input type="checkbox" id="sv-switch" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item" id="sv-container">
+                            <button id="enroll-sv-btn" class="action-btn">声纹注册</button>
+                            <span id="sv-status" class="status-text">未注册</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-panel">
+                    <button id="start-btn" class="action-btn primary-btn">开始录音</button>
+                    <button id="stop-btn" class="action-btn" disabled>停止录音</button>
+                    <button id="clear-btn" class="action-btn">清空对话</button>
+                </div>
+            </div>
+        </main>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3 id="modal-title">声纹注册</h3>
+                <div id="modal-body">
+                    <p>请对着麦克风说话，至少持续<strong>3秒</strong>以上。</p>
+                    <div class="recording-indicator">
+                        <div class="recording-spinner"></div>
+                        <span>录音中...</span>
+                        <div id="recording-timer">0s</div>
+                    </div>
+                </div>
+                <div id="modal-footer">
+                    <button id="modal-cancel" class="action-btn">取消</button>
+                    <button id="modal-confirm" class="action-btn primary-btn">开始录音</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

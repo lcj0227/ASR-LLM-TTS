@@ -94,4 +94,34 @@ EOF
     ;;
 esac
 
-echo "如果浏览器没有自动打开，请访问: http://localhost:3000" 
+echo "如果浏览器没有自动打开，请访问: http://localhost:3000"
+
+# 语音助手前端启动脚本
+# 本脚本用于启动语音助手前端服务
+
+# 小千语音助手已添加到系统，集成了唤醒词和声纹识别功能
+
+# 检查Node.js环境
+if ! command -v node &> /dev/null
+then
+    echo "未检测到Node.js，请先安装Node.js"
+    exit 1
+fi
+
+# 检查yarn
+if ! command -v yarn &> /dev/null
+then
+    echo "未检测到yarn，正在安装..."
+    npm install -g yarn
+fi
+
+# 安装依赖
+echo "正在安装依赖..."
+yarn install
+
+# 启动开发服务器
+echo "正在启动开发服务器..."
+yarn start
+
+# 脚本结束后提示
+echo "开发服务器已停止。" 

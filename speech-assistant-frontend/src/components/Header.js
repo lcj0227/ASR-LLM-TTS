@@ -25,7 +25,8 @@ const navLinks = [
   { title: '实时语音对话', path: '/realtime-chat' },
   { title: '按键式语音对话', path: '/record-chat' },
   { title: '场景语音对话', path: '/scene-voice-chat' },
-  { title: '文本转语音', path: '/text-to-speech' }
+  { title: '文本转语音', path: '/text-to-speech' },
+  { title: '小千语音助手', path: '/voice-assistant' }
 ];
 
 function Header() {

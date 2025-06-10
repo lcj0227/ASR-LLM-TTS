@@ -12,6 +12,7 @@ import RealTimeChat from './pages/RealTimeChat';
 import RecordChat from './pages/RecordChat';
 import TextToSpeech from './pages/TextToSpeech';
 import SceneVoiceChat from './pages/SceneVoiceChat';
+import VoiceAssistant from './pages/VoiceAssistant';
 
 // 创建主题
 const theme = createTheme({
@@ -70,6 +71,7 @@ function App() {
           <Route path="/record-chat" element={<RecordChat />} />
           <Route path="/text-to-speech" element={<TextToSpeech />} />
           <Route path="/scene-voice-chat" element={<SceneVoiceChat />} />
+          <Route path="/voice-assistant" element={<VoiceAssistant />} />
         </Routes>
       </Container>
       <Footer />
