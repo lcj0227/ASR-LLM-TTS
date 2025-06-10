@@ -59,6 +59,8 @@ pretrained_models/*
 *.mp3
 *.mp4
 
-# 忽略大文件
-Wav2Lip/checkpoints/wav2lip_gan.pth
-wav2lip_model/wav2lip_gan.pth
+# 忽略所有大模型文件
+*.pth
+Wav2Lip/checkpoints/*.pth
+wav2lip_model/*.pth
+**/checkpoints/*.pth
