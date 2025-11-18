@@ -64,3 +64,5 @@ pretrained_models/*
 Wav2Lip/checkpoints/*.pth
 wav2lip_model/*.pth
 **/checkpoints/*.pth
+
+node_modules/
