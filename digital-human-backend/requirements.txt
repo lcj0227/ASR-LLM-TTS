@@ -1,0 +1,45 @@
+# FastAPI相关
+fastapi==0.115.3
+uvicorn[standard]==0.32.0
+python-multipart==0.0.12
+websockets==11.0.3
+pydantic==2.9.2
+pydantic-settings==2.3.4
+
+# 数据处理
+numpy==1.26.3
+opencv-python==4.10.0.84
+Pillow==10.4.0
+scipy==1.14.1
+
+# 音频处理
+librosa==0.10.2.post1
+soundfile==0.12.1
+pydub==0.25.1
+
+# PyTorch相关（根据CUDA版本选择，这里使用CPU版本作为默认）
+# 如果有CUDA，请安装对应版本，例如：
+# torch==2.3.1+cu118 --index-url https://download.pytorch.org/whl/cu118
+# torchaudio==2.3.1+cu118 --index-url https://download.pytorch.org/whl/cu118
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# 模型相关
+transformers>=4.45.0
+accelerate>=0.30.0
+funasr>=1.1.0
+edge-tts>=6.1.0
+modelscope>=1.15.0  # CosyVoice依赖
+hyperpyyaml>=1.2.0  # CosyVoice依赖
+onnxruntime>=1.23.0  # CosyVoice依赖
+openai-whisper>=20250625  # CosyVoice依赖
+inflect>=7.5.0  # CosyVoice依赖
+# pynini>=2.1.5  # CosyVoice可选依赖，Windows上编译需要C++编译器，如不需要可跳过
+# WeTextProcessing>=1.0.4  # CosyVoice可选依赖，依赖pynini，Windows上编译需要C++编译器
+
+# 工具
+python-dotenv==1.0.1
+aiofiles>=23.2.0
+tqdm>=4.66.0
+requests>=2.32.0
+
