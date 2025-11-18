@@ -1,0 +1,47 @@
+name: digital-human
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch>=2.0.0
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.8  # 根据CUDA版本调整，CPU版本可删除此行
+  - numpy>=1.26.0
+  - opencv>=4.10.0
+  - pillow>=10.0.0
+  - scipy>=1.14.0
+  - librosa>=0.10.0
+  - pynini=2.1.5  # CosyVoice需要
+  - pip:
+    # FastAPI相关
+    - fastapi==0.115.3
+    - uvicorn[standard]==0.32.0
+    - python-multipart==0.0.12
+    - websockets==11.0.3
+    - pydantic==2.9.2
+    
+    # 音频处理
+    - pydub==0.25.1
+    - soundfile>=0.12.0
+    
+    # 模型相关（从主requirements.txt）
+    - transformers>=4.45.0
+    - accelerate>=0.33.0
+    - funasr>=1.1.0
+    - edge-tts>=6.1.0
+    
+    # 工具库
+    - python-dotenv==1.0.1
+    - tqdm>=4.66.0
+    
+    # 其他依赖
+    - requests>=2.32.0
+    - aiofiles>=23.2.0
+    
+    # 如果需要使用完整功能，可以安装主requirements.txt中的所有依赖
+    # 注意：主requirements.txt包含很多可选依赖，建议按需安装
+
